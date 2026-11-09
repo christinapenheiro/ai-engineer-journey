@@ -1,0 +1,31 @@
+jobs = [
+    {"title": "AI Engineer", "company": "Nova", "salary": 95000, "remote": True, "skills": ["python", "fastapi", "rag"]},
+    {"title": "Email Support Agent", "company": "Mailly", "salary": 30000, "remote": True, "skills": ["english", "crm"]},
+    {"title": "ML Engineer", "company": "Orbit", "salary": 110000, "remote": False, "skills": ["python", "pytorch", "sql"]},
+    {"title": "LLM Application Developer", "company": "Nova", "salary": 85000, "remote": True, "skills": ["python", "langgraph", "rag", "docker"]},
+    {"title": "Frontend Developer", "company": "Pixel", "salary": 60000, "remote": True, "skills": ["react", "typescript"]},
+]
+my_skills = {"python", "javascript", "typescript", "react", "mongodb"}
+
+
+Basics and functions
+
+Study hours: with hours_per_day=4, days_per_week=6, weeks=26, print the weekly and total hours with an f-string.
+String cleaner: take " Senior AI Engineer (Remote) ". Strip it, lowercase it, remove the parentheses, split into words, and print the first and last word. Check if "remote" is in it.
+is_ai_job(title) -> bool: it must be True for AI Engineer, ML Engineer, and LLM Application Developer, and False for Email Support Agent. A naive "ai" in title will fail on “Email”. Fix it by splitting into words.
+salary_stats(salaries, round_to=0): return (lowest, highest, average) using a loop, then call it with tuple unpacking. Check your answer against min(), max(), and sum().
+Loops: print 1. AI Engineer @ Nova - $95,000 for every job using enumerate. Then use zip to pair titles and salaries. Then use a while loop that adds salaries and breaks once the total passes 200000.
+
+Data structures
+6. Lists: build one flat list of all skills (with duplicates) using nested loops. Remove duplicates while keeping order, using a loop and in. Then compare with set() and notice what order does. Finally, try sort() vs sorted() on it.
+7. Sets (skill gap): use required = {"python", "rag", "docker", "fastapi"} against my_skills. Print what you have, what you’re missing, and everything combined. The “missing” set is your learning list.
+8. Dict counting: take a job description string and count each word, first with .get(word, 0) + 1, then with Counter(...).most_common(3).
+9. Grouping: group jobs by company into a dict of lists. Try setdefault, then defaultdict(list).
+10. Dict operations: use .get("benefits", "not listed"), check keys with in, update a salary, delete a key, and loop with .items().
+11. Tuples and sorting: make (title, salary) tuples, sort them highest-first with sorted(..., key=lambda ...), and print the top 3. Then sort the original jobs list by salary.
+
+Comprehensions and generators
+12. Comprehensions: (a) titles of remote jobs paying at least 80000, (b) {title: salary} dict, (c) a set of all unique skills (nested).
+13. Rewrite: turn three of your earlier loops into comprehensions. Then find one where the comprehension is harder to read, keep the loop, and add a one-line comment explaining why.
+14. Generators: write countdown(n) with yield, and an infinite fibonacci() where you call next() 10 times. Then loop over a list manually with iter() and next() until StopIteration.
+15. Lazy filter: write a generator ai_jobs(jobs) that yields only AI jobs. Use a generator expression with sum(...). Then compare sys.getsizeof([x for x in range(1_000_000)]) with the same as a generator, and write one sentence on what you saw.
