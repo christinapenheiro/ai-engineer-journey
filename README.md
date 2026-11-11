@@ -32,14 +32,6 @@ I'm learning AI engineering in public. This repo holds my code, notes, and progr
 |---|---|---|
 | 1 | Python core: functions, data structures, comprehensions, iterators, generators | Completed |
 
-### Day 1 checklist
-
-- [x] Strings, loops, and functions (`is_ai_job`, `salary_stats`)
-- [x] Lists, sets, dicts, tuples, counting, grouping, sorting
-- [x] Shallow vs deep copy
-- [ ] Comprehensions (exercises 12-13)
-- [ ] Iterators and generators (exercises 14-15)
-- [ ] Interview Q&A notes and cheat sheet
 
 ## Repo structure
 
