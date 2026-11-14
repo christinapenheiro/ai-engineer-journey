@@ -1,0 +1,169 @@
+1. What’s the difference between a class and an object (instance)?
+Class: A blueprint or template for creating objects.
+Object: An actual instance created from a class.
+
+class Student:
+    pass
+
+student1 = Student()
+student2 = Student()
+
+Here:
+- Student is the class.
+- student1 and student2 are two separate objects.
+
+2. What does self mean?
+self refers to the current object (instance) of a class. It allows an object to access its own attributes and methods.
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+student1 = Student("Alice")
+student2 = Student("Bob")
+
+print(student1.name)  # Alice
+print(student2.name)  # Bob
+
+self.name belongs to the current object.
+
+3. __init__ vs __repr__: what does each do?
+__init__: Initializes an object's attributes when an object is created.
+__repr__: Defines the developer-friendly string representation of an object.
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return f"Student(name={self.name!r})"
+
+student = Student("Alice")
+
+print(student)
+
+
+Output:
+Student(name='Alice')
+
+Think of it this way:
+- __init__ = Set up the object.
+- __repr__ = Show what the object looks like.
+
+
+
+4. Dataclass vs regular class vs dict: when do you use each?
+Type	When to use
+Regular class-	When you need custom behavior, methods, and more control.
+Dataclass-	When you mainly need to store data with less code.
+Dictionary-	When you need flexible key-value storage.
+
+# Regular class
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+# Dataclass
+from dataclasses import dataclass
+
+@dataclass
+class Student:
+    name: str
+    age: int
+
+# Dictionary
+student = {"name": "Alice", "age": 22}
+
+
+Easy way to remember:
+- Class = Data + Behavior.
+- Dataclass = Mainly data with less boilerplate.
+- Dict = Key-value data.
+
+
+5. Are type hints enforced at runtime? What do they help with?
+No. Python does not automatically enforce type hints at runtime.
+They help:
+- Understand what type of data a function expects.
+- Make code easier to read.
+- Detect potential type errors using tools like type checkers.
+- Improve code suggestions in editors.
+
+def add(a: int, b: int) -> int:
+    return a + b
+
+print(add("10", "20"))
+
+Output:
+1020
+
+Even though we specified int, Python still allows strings. That's why typrchecker like mypy is needed.
+
+6. What’s the mutable default argument bug, and how do you fix it?
+When you use a mutable object (like a list or dictionary) as a default argument, Python creates that object only once when the function is defined.
+
+So, changes can remain between function calls.
+
+
+Incorrect example:
+
+def add_item(item, items=[]):
+    items.append(item)
+    return items
+
+print(add_item("Apple"))  # ['Apple']
+print(add_item("Banana")) # ['Apple', 'Banana']
+
+
+Why? Both calls share the same list.
+
+
+Correct example:
+
+
+def add_item(item, items=None):
+    if items is None:
+        items = []
+
+    items.append(item)
+    return items
+
+print(add_item("Apple"))  # ['Apple']
+print(add_item("Banana")) # ['Banana']
+
+
+7. is vs ==
+
+== checks whether two objects have equal values.
+is checks whether two variables refer to the exact same object in memory.
+
+a = [1, 2, 3]
+b = [1, 2, 3]
+
+print(a == b)  # True
+print(a is b)  # False
+
+Why?
+- a == b → Both lists contain the same values.
+- a is b → They are two different list objects.
+
+Another example:
+
+a = None
+
+print(a is None)  # True
+
+Use is None when checking whether a value is None.
+
+Quick revision cheatsheet
+Concept	Remember
+Class - Blueprint
+Object - Instance of a class
+self - Current object
+__init__ - Initializes attributes
+__repr__ -	Developer-friendly representation
+Dataclass -	Easy data storage
+Type hints - Help with readability and type checking
+Mutable default bug - Shared mutable object between calls
+is - Same object
+== - Equal values
